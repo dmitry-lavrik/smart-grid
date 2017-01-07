@@ -1,0 +1,5 @@
+/nbproject/*
+/.git/*
+/node_modules/*
+/tmp/*
+/todo.txt

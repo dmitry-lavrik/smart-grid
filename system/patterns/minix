@@ -1,0 +1,3 @@
+{{before_mixin}}{{name}}({{params}}){{brace}}
+{{content}}
+{{/brace}}

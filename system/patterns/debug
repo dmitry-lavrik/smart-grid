@@ -1,0 +1,23 @@
+{{before_mixin}}debug({{var}}background, {{var}}outline){{brace}}
+{{tab}}height{{:}}100vh{{;}}
+{{tab}}position{{:}}fixed{{;}}
+{{tab}}width{{:}}100%{{;}}
+{{tab}}
+{{tab}}> div{{brace}}
+{{tab}}{{tab}}height{{:}}inherit{{;}}
+{{tab}}{{tab}}{{call}}wrapper(){{;}}
+{{tab}}{{tab}}
+{{tab}}{{tab}}> div{{brace}}
+{{tab}}{{tab}}{{tab}}height{{:}}inherit{{;}}
+{{tab}}{{tab}}{{tab}}{{call}}row-flex(){{;}}
+{{tab}}{{tab}}{{tab}}
+{{tab}}{{tab}}{{tab}}> div{{brace}}
+{{tab}}{{tab}}{{tab}}{{tab}}{{call}}col(){{;}}
+{{tab}}{{tab}}{{tab}}{{tab}}{{call}}col-1(){{;}}
+{{tab}}{{tab}}{{tab}}{{tab}}height{{:}}inherit{{;}}
+{{tab}}{{tab}}{{tab}}{{tab}}outline{{:}}{{var}}outline{{;}}
+{{tab}}{{tab}}{{tab}}{{tab}}background{{:}}{{var}}background{{;}}
+{{tab}}{{tab}}{{tab}}{{/brace}}
+{{tab}}{{tab}}{{/brace}}
+{{tab}}{{/brace}}
+{{/brace}}
