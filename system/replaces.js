@@ -37,8 +37,8 @@ Replaces.prototype.all = function(str, style){
             '{{=}}': ' = ',
             '{{string-var}}': '{$',
             '{{/string-var}}': '}',
-            '{{i}}': 's("',
-            '{{/i}}': '")',
+            '{{i}}': 'iopen',
+            '{{/i}}': 'iclose',
             '{{before_mixin}}': '',
             '{{call}}': '',
             '{{brace}}': '',
@@ -74,6 +74,29 @@ Replaces.prototype.all = function(str, style){
     for(var key in active){
         var tmp = out.split(key);
         out = tmp.join(active[key]);
+    }
+    
+    if(style === 'styl'){
+        var pattern = new RegExp(replaces.styl['{{i}}'] + '(.+?)' + replaces.styl['{{/i}}'], 'g');
+        var pattern_var = new RegExp("\{(.+?)\}", 'g');
+        
+        var ol = replaces.styl['{{i}}'].length;
+        var cl = replaces.styl['{{/i}}'].length;
+
+        out = out.replace(pattern, function (a){ 
+            var clear = a.substr(ol, a.length - ol - cl);
+            var one = '';
+            var vars = [];
+
+            clear = clear.replace(pattern_var, function(a){
+                vars.push(a.substr(1, a.length - 2));
+                return '%s';
+            });
+            
+            one = '"' + clear + '" % (' + vars.join(' ') + ')'; 
+            
+            return one;
+        });
     }
     
     return out;

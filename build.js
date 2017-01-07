@@ -5,6 +5,7 @@ function Build(settings, patterns){
     resources.helpers = new (require('./system/helpers.js').instance)();
     resources.base = new (require('./system/base.js').instance)(resources);
     resources.column = require('./system/column.js');
+    resources.offset = require('./system/offset.js');
     resources.mediaQuery = require('./system/media.js');
     resources.patterns = patterns;
     resources.mixin = require('./system/mixin.js');
@@ -16,6 +17,7 @@ function Build(settings, patterns){
 
     str += "{{var}}columns{{=}}" + resources.settings.columns + '{{;}}\n';
     str += "{{var}}offset{{=}}" + resources.settings.offset + '{{;}}\n';
+    str += "{{var}}atom{{=}}" + (100 / resources.settings.columns) + '%{{;}}\n';
 
     str += '\n';
 
@@ -33,10 +35,18 @@ function Build(settings, patterns){
 
         for (var i = 1; i <= resources.settings.columns; i++) {
             var col = new resources.column.gen(resources, media, resources.settings.mixinNames.column + postfix, i);
-            var width = col.render();
-            inner += width + "\n";
+            inner += col.render() + "\n";
         }
-
+        
+        var offset = new resources.offset.gen(resources, media, resources.settings.mixinNames.offset + postfix, 'same');
+        inner += offset.render() + "\n";
+        
+        var offset = new resources.offset.gen(resources, media, resources.settings.mixinNames.offset + '-left' + postfix, 'left');
+        inner += offset.render() + "\n";
+        
+        var offset = new resources.offset.gen(resources, media, resources.settings.mixinNames.offset + '-right' + postfix, 'right');
+        inner += offset.render() + "\n";
+            
         return inner;
     }
 

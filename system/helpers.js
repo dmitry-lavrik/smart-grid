@@ -12,7 +12,7 @@ Helpers.prototype.smartCalc = function(w, o, operation){
         output = value + width.unit;
     }
     else{
-        output = 'calc(' + width.value + width.unit + ' ' + operation + ' ' + offset.value + offset.unit + ')';
+        output = 'calc(' + width.value + width.unit + ' ' + operation + ' {{string-var}}offset{{/string-var}})';
     }
     
     return output;

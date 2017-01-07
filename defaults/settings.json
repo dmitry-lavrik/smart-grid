@@ -30,7 +30,8 @@
         "rowFloat": "row-float",
         "column": "col",
         "columnFloat": "col-float",
-        "columnPadding": "col-padding"
+        "columnPadding": "col-padding",
+        "offset": "offset"
     },
     "properties": [
         "justify-content",

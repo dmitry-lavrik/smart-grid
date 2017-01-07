@@ -1,6 +1,6 @@
 {
   "name": "smart-grid",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Smart CSS Grid with different preprocessors: LESS, SCSS, SASS or Stylus",
   "main": "index.js",
   "dependencies": {},
@@ -17,9 +17,12 @@
   ],
   "author": "Dmitry Lavrik",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/dmitrylavr/node-drig-generator#readme",
+  "homepage": "https://github.com/dmitry-lavrik/smart-grid#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://dmitrylavr@gmail.com@bitbucket.org/dmitrylavr/node-drig-generator.git"
+    "url": "git+https://github.com/dmitry-lavrik/smart-grid.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dmitry-lavrik/smart-grid/issues"
   }
 }
