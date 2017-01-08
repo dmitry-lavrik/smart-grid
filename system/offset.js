@@ -17,6 +17,16 @@ function Offset(resources, media, name, direction) {
             this.properties.push('margin-left');
             this.properties.push('margin-right');
             break;
+        case 'left-padding':
+            this.properties.push('padding-left');
+            break;
+        case 'right-padding':
+            this.properties.push('padding-right');
+            break;
+        case 'same-padding':
+            this.properties.push('padding-left');
+            this.properties.push('padding-right');
+            break;
         default:
             throw new Error('what is "' + direction + '" value? We use [left, right, same] directions in offsets.');
     }
@@ -27,10 +37,10 @@ Offset.prototype.render = function () {
    
     for(var i = 0; i < this.properties.length; i++){
         if(this.resources.helpers.isPercentage(this.offset)){
-            style += this.properties[i] + '{{:}}{{var}}value + ({{var}}offset / 2){{;}}\n';
+            style += this.properties[i] + '{{:}}{{var}}value + {{var}}offset_one_side{{;}}\n';
         }
         else{
-            style += this.properties[i] + '{{:}}{{i}}calc({{string-var}}value{{/string-var}} - {{string-var}}offset{{/string-var}}){{/i}}{{;}}\n';
+            style += this.properties[i] + '{{:}}{{i}}calc({{string-var}}value{{/string-var}} + {{string-var}}offset_one_side{{/string-var}}){{/i}}{{;}}\n';
         }
     }
     

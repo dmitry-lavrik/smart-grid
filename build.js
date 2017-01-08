@@ -17,6 +17,7 @@ function Build(settings, patterns){
 
     str += "{{var}}columns{{=}}" + resources.settings.columns + '{{;}}\n';
     str += "{{var}}offset{{=}}" + resources.settings.offset + '{{;}}\n';
+    str += "{{var}}offset_one_side{{=}}({{var}}offset / 2){{;}}\n";
     str += "{{var}}atom{{=}}" + (100 / resources.settings.columns) + '%{{;}}\n';
 
     str += '\n';
@@ -30,6 +31,14 @@ function Build(settings, patterns){
 
     str += "\n" + resources.base.render();
 
+    var offsets_map = {};
+    offsets_map[resources.settings.mixinNames.offset] = 'same';
+    offsets_map[resources.settings.mixinNames.offset + '-left'] = 'left';
+    offsets_map[resources.settings.mixinNames.offset + '-right'] = 'right';
+    offsets_map[resources.settings.mixinNames.offset + '-padding'] = 'same-padding';
+    offsets_map[resources.settings.mixinNames.offset + '-left-padding'] = 'left-padding';
+    offsets_map[resources.settings.mixinNames.offset + '-right-padding'] = 'right-padding';
+
     function generateOneMedia(resources, media, postfix) {
         var inner = '';
 
@@ -38,14 +47,10 @@ function Build(settings, patterns){
             inner += col.render() + "\n";
         }
         
-        var offset = new resources.offset.gen(resources, media, resources.settings.mixinNames.offset + postfix, 'same');
-        inner += offset.render() + "\n";
-        
-        var offset = new resources.offset.gen(resources, media, resources.settings.mixinNames.offset + '-left' + postfix, 'left');
-        inner += offset.render() + "\n";
-        
-        var offset = new resources.offset.gen(resources, media, resources.settings.mixinNames.offset + '-right' + postfix, 'right');
-        inner += offset.render() + "\n";
+        for(var name in offsets_map){
+            var offset = new resources.offset.gen(resources, media, name + postfix, offsets_map[name]);
+            inner += offset.render() + "\n";
+        }
             
         return inner;
     }
