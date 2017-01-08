@@ -28,7 +28,7 @@ function Offset(resources, media, name, direction) {
             this.properties.push('padding-right');
             break;
         default:
-            throw new Error('what is "' + direction + '" value? We use [left, right, same] directions in offsets.');
+            throw new Error('what is "' + direction + '" value? We use [left, right, same, left-padding, right-padding or same-padding] directions in offsets.');
     }
 }
 
@@ -43,9 +43,7 @@ Offset.prototype.render = function () {
             style += this.properties[i] + '{{:}}{{i}}calc({{string-var}}value{{/string-var}} + {{string-var}}offset_one_side{{/string-var}}){{/i}}{{;}}\n';
         }
     }
-    
-    
-    //var style = "width: {{i}}" + this.resources.helpers.smartCalc(this.value, this.offset, '+') + "{{/i}};\n";
+
     var mixin = new this.resources.mixin.create(this.resources.patterns.mixin, this.name, '{{var}}n', this.media.wrap(style, 1));
     return mixin.render(this.resources.settings.outputStyle);
 };
