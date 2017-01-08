@@ -68,10 +68,10 @@ function Build(settings, patterns){
     }
 
     var debug_mixin = new resources.mixin.create(resources.patterns.debug, 'debug', '', resources.patterns.reset);
-    str += '\n' + debug_mixin.render() + '\n';
+    str += debug_mixin.render() + '\n';
     
     var clearfix_mixin = new resources.mixin.create(resources.patterns.mixin, 'clearfix', '', resources.patterns.clearfix);
-    str += '\n' + clearfix_mixin.render() + '\n';
+    str += clearfix_mixin.render() + '\n';
 
     str = resources.replaces.all(str, resources.settings.outputStyle);
     
