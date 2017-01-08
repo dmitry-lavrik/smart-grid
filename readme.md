@@ -1,8 +1,4 @@
-> Create CSS? It's fast and easy! With smart-grid!
-
-## Module is in development!
-
-It works well, but please, for now, use it carefully.
+> Create adaptive CSS? It's fast and easy! With smart-grid!
 
 ## Install
 
@@ -115,6 +111,37 @@ In the proposed version, we do not touch at all the classes in the html code, bu
 ```
 
 It's nice! But it's generate a lot of media queries.
+
+### But after use group-css-media-queries get the same code written by hand.
+
+```css
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.items .item {
+    box-sizing: border-box;
+    margin-left: 15px;
+    margin-right: 15px;
+    word-wrap: break-word;
+    width: calc(25% - 30px);
+}
+@media screen and (max-width: 992px) {
+    .items {
+        justify-content: center;
+    }
+    .items .item {
+        width: calc(41.66666666666667% - 30px);
+    }
+}
+@media screen and (max-width: 576px) {
+    .items .item {
+        width: calc(83.33333333333334% - 30px);
+    }
+}
+```
 
 ### So, ideal CSS scheme
 
