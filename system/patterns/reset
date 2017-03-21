@@ -40,3 +40,6 @@
 {{tab}}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,main{{brace}}
 {{tab}}{{tab}}display{{:}}block{{;}}
 {{tab}}{{/brace}}
+{{tab}}img{{brace}}
+{{tab}}{{tab}}max-width{{:}}100%{{;}}
+{{tab}}{{/brace}}
