@@ -30,7 +30,7 @@ module.exports = function(dest, options){
             console.log('It`s test mode, because you don`t set destination folder');
         }
         else{
-            var buildFile = dest + '/smart-grid.' + res.type;
+            var buildFile = dest + '/' + options.filename + '.' + res.type;
             fs.writeFileSync(buildFile, res.grid);
             console.log('Grid placed into ' + buildFile);
         }

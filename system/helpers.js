@@ -29,8 +29,12 @@ Helpers.prototype.parseUnit = function(str){
         res.value = str.substr(0, str.length - 1);
         res.unit = '%';
     }
+    else if(this.isRem(str)){
+        res.value = str.substr(0, str.length - 3);
+        res.unit = 'rem';
+    }
     else{
-        throw new Error('what is "' + str + '" value? We use px and %.');
+        throw new Error('what is "' + str + '" value? We use px, % and rem.');
     }
     
     return res;
@@ -42,6 +46,10 @@ Helpers.prototype.isPixel = function(str){
 
 Helpers.prototype.isPercentage = function(str){
     return str.substr(-1) === '%';
+}
+
+Helpers.prototype.isRem = function(str){
+    return str.substr(-3) === 'rem';
 }
 
 Helpers.prototype.math = function(a, b, op){
