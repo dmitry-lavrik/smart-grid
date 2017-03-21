@@ -18,7 +18,7 @@ function Build(settings, patterns){
     str += "{{var}}columns{{=}}" + resources.settings.columns + '{{;}}\n';
     str += "{{var}}offset{{=}}" + resources.settings.offset + '{{;}}\n';
     str += "{{var}}offset_one_side{{=}}({{var}}offset / 2){{;}}\n";
-    str += "{{var}}atom{{=}}" + (100 / resources.settings.columns) + '%{{;}}\n';
+    str += "{{var}}atom{{=}}(100% / {{var}}columns){{;}}\n";
 
     str += '\n';
 
