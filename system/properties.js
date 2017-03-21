@@ -20,7 +20,13 @@ Properties.prototype.render = function (media, name) {
         out += mix.render(this.resources.settings.outputStyle) + "\n";
     }
     
-    return out;
+    if(name !== ''){
+        var styles = "{{block-content-extract}}{{;}}\n";
+        var mix = new this.resources.mixin.create(this.resources.patterns.mixin, name + '-block', '{{block-content-var}}', media.wrap(styles, 1));
+        out += mix.render(this.resources.settings.outputStyle) + "\n";
+    }
+    
+    return out; 
 }
 
 module.exports.instance = Properties;

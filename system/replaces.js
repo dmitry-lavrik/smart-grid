@@ -16,7 +16,9 @@ Replaces.prototype.all = function(str, style){
             '{{brace}}': '{',
             '{{/brace}}': '}',
             '{{:}}': ': ',
-            '{{;}}': ';'
+            '{{;}}': ';',
+            '{{block-content-var}}': '@content',
+            '{{block-content-extract}}': '@content()'
         },
         scss: {
             '{{var}}': '$',
@@ -30,7 +32,9 @@ Replaces.prototype.all = function(str, style){
             '{{brace}}': '{',
             '{{/brace}}': '}',
             '{{:}}': ': ',
-            '{{;}}': ';'
+            '{{;}}': ';',
+            '{{block-content-var}}': '',
+            '{{block-content-extract}}': '@content'
         },
         styl: {
             '{{var}}': '$',
@@ -44,7 +48,9 @@ Replaces.prototype.all = function(str, style){
             '{{brace}}': '',
             '{{/brace}}': '',
             '{{:}}': ' ',
-            '{{;}}': ''
+            '{{;}}': '',
+            '{{block-content-var}}': 'content',
+            '{{block-content-extract}}': '{content}'
         },
         sass: {
             '{{var}}': '$',
@@ -58,7 +64,9 @@ Replaces.prototype.all = function(str, style){
             '{{brace}}': '',
             '{{/brace}}': '',
             '{{:}}': ': ',
-            '{{;}}': ''
+            '{{;}}': '',
+            '{{block-content-var}}': '',
+            '{{block-content-extract}}': '@content'
         }
     };
     
