@@ -7,26 +7,26 @@ function Base(resources) {
         row: {
             display: "flex",
             'flex-wrap': "wrap",
-            'margin-left': (-(offset.value / 2) + offset.unit),
-            'margin-right': (-(offset.value / 2) + offset.unit)
+            'margin-left': "{{var}}offset_one_side",
+            'margin-right': "{{var}}offset_one_side"
         },
         rowFloat: {
-            'margin-left': (-(offset.value / 2) + offset.unit),
-            'margin-right': (-(offset.value / 2) + offset.unit),
+            'margin-left': "{{var}}offset_one_side",
+            'margin-right': "{{var}}offset_one_side",
             '{{call}}clearfix()': null,
         },
         column: {
             'box-sizing': "border-box",
-            'margin-left': ((offset.value / 2) + offset.unit),
-            'margin-right': ((offset.value / 2) + offset.unit),
+            'margin-left': "{{var}}offset_one_side",
+            'margin-right': "{{var}}offset_one_side",
             'word-wrap': "break-word"
         },
         columnFloat: {
             'float': 'left'
         },
         columnPadding: {
-            'padding-left': ((offset.value / 2) + offset.unit),
-            'padding-right': ((offset.value / 2) + offset.unit),
+            'padding-left': "{{var}}offset_one_side",
+            'padding-right': "{{var}}offset_one_side",
             'word-wrap': "break-word"
         }
     };
