@@ -7,12 +7,12 @@ function Base(resources) {
         row: {
             display: "flex",
             'flex-wrap': "wrap",
-            'margin-left': "{{var}}offset_one_side",
-            'margin-right': "{{var}}offset_one_side"
+            'margin-left': "-{{var}}offset_one_side",
+            'margin-right': "-{{var}}offset_one_side"
         },
         rowFloat: {
-            'margin-left': "{{var}}offset_one_side",
-            'margin-right': "{{var}}offset_one_side",
+            'margin-left': "-{{var}}offset_one_side",
+            'margin-right': "-{{var}}offset_one_side",
             '{{call}}clearfix()': null,
         },
         column: {
