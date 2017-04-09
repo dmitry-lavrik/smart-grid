@@ -6,6 +6,12 @@ module.exports = function (dest, options) {
         var jsonSettings = fs.readFileSync(root + '/defaults/settings.json');
         var defaults = JSON.parse(jsonSettings);
 
+        var innerMerge = {
+            container: true,
+            breakPoints: false,
+            mixinNames: true
+        };
+
         if (typeof options !== "object") {
             options = defaults;
         } else {
@@ -13,7 +19,7 @@ module.exports = function (dest, options) {
                 if (typeof (options[key]) === "undefined") {
                     options[key] = defaults[key];
                 } 
-                else if (typeof options[key] === "object") {
+                else if (typeof options[key] === "object" && innerMerge[key]) {
                     for (var k in defaults[key]) {
                         if (typeof (options[key][k]) === "undefined") {
                             options[key][k] = defaults[key][k];
