@@ -22,20 +22,20 @@ var settings = {
     },
     breakPoints: {
         lg: {
-            'width': '1100px', /* -> @media (max-width: 1100px) */
-            'fields': '30px' /* side fields */
+            width: '1100px', /* -> @media (max-width: 1100px) */
+            fields: '30px' /* side fields */
         },
         md: {
-            'width': '960px',
-            'fields': '15px'
+            width: '960px',
+            fields: '15px'
         },
         sm: {
-            'width': '780px',
-            'fields': '15px'
+            width: '780px',
+            fields: '15px'
         },
         xs: {
-            'width': '560px',
-            'fields': '15px'
+            width: '560px',
+            fields: '15px'
         }
         /* 
         We can create any quantity of break points.
