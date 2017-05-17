@@ -70,9 +70,9 @@ In the proposed version, we do not touch at all the classes in the html code, bu
 
     .item{
         .col();
-        .col-3();
-        .col-md-5();
-        .col-xs-10();
+        .size(3);
+        .size-md(5);
+        .size-xs(10);
     }
 }
 ```
