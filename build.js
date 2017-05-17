@@ -82,9 +82,9 @@ function Build(settings, patterns) {
     str = resources.replaces.all(str, resources.settings.outputStyle);
 
     return {
-        'res': true,
-        'grid': str,
-        'type': resources.settings.outputStyle
+        res: true,
+        grid: str,
+        type: resources.settings.outputStyle
     };
 }
 
