@@ -1,15 +1,13 @@
-function Column(resources, media, name, num) {
+function Column(resources, name, postfix, num) {
     this.resources = resources;
-    this.media = media;
-    this.name = name + '-' + num;
-    this.offset = resources.settings.offset;
-    this.width = ((100 / resources.settings.columns) * num) + "%";
+    this.name = name;
+    this.postfix = postfix;
+    this.num = num;
 }
 
 Column.prototype.render = function () {
-    var width = '{{i}}' + this.resources.helpers.smartCalc(this.width, this.offset, '-') + '{{/i}}';
-    var style = this.resources.styles.objToStyles({width: width});
-    var mixin = new this.resources.mixin.create(this.resources.patterns.mixin, this.name, '', this.media.wrap(style, 1));
+    var style = "{{tab}}{{call}}" + this.resources.settings.mixinNames.size + this.postfix + "(" + this.num + ")" + "{{;}}";
+    var mixin = new this.resources.mixin.create(this.resources.patterns.mixin, this.name + this.postfix + '-' + this.num, '', style);
     return mixin.render(this.resources.settings.outputStyle);
 };
 

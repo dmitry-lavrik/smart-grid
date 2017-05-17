@@ -1,10 +1,11 @@
-function Build(settings, patterns){
+function Build(settings, patterns) {
     var resources = {};
 
     resources.settings = settings;
     resources.helpers = new (require('./system/helpers.js').instance)();
     resources.base = new (require('./system/base.js').instance)(resources);
     resources.column = require('./system/column.js');
+    resources.size = require('./system/size.js');
     resources.offset = require('./system/offset.js');
     resources.mediaQuery = require('./system/media.js');
     resources.patterns = patterns;
@@ -42,16 +43,21 @@ function Build(settings, patterns){
     function generateOneMedia(resources, media, postfix) {
         var inner = '';
 
-        for (var i = 1; i <= resources.settings.columns; i++) {
-            var col = new resources.column.gen(resources, media, resources.settings.mixinNames.column + postfix, i);
-            inner += col.render() + "\n";
+        var size = new resources.size.gen(resources, media, resources.settings.mixinNames.size + postfix);
+        inner += size.render() + "\n";
+
+        if (resources.settings.oldSizeStyle) {
+            for (var i = 1; i <= resources.settings.columns; i++) {
+                var col = new resources.column.gen(resources, resources.settings.mixinNames.column, postfix, i);
+                inner += col.render() + "\n";
+            }
         }
-        
-        for(var name in offsets_map){
+
+        for (var name in offsets_map) {
             var offset = new resources.offset.gen(resources, media, name + postfix, offsets_map[name]);
             inner += offset.render() + "\n";
         }
-            
+
         return inner;
     }
 
@@ -69,15 +75,15 @@ function Build(settings, patterns){
 
     var debug_mixin = new resources.mixin.create(resources.patterns.debug, 'debug', '', resources.patterns.reset);
     str += debug_mixin.render() + '\n';
-    
+
     var clearfix_mixin = new resources.mixin.create(resources.patterns.mixin, 'clearfix', '', resources.patterns.clearfix);
     str += clearfix_mixin.render() + '\n';
 
     str = resources.replaces.all(str, resources.settings.outputStyle);
-    
+
     return {
         'res': true,
-        'grid': str, 
+        'grid': str,
         'type': resources.settings.outputStyle
     };
 }

@@ -30,6 +30,7 @@
         "row": "row-flex",
         "rowFloat": "row-float",
         "column": "col",
+        "size": "size",
         "columnFloat": "col-float",
         "columnPadding": "col-padding",
         "offset": "offset"
@@ -49,5 +50,6 @@
         "flex-flow",
         "float"
     ],
-    "tab": "    "
+    "tab": "    ",
+    "oldSizeStyle": true
 }

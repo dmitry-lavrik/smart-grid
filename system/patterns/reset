@@ -42,4 +42,5 @@
 {{tab}}{{/brace}}
 {{tab}}img{{brace}}
 {{tab}}{{tab}}max-width{{:}}100%{{;}}
+{{tab}}{{tab}}height{{:}}auto{{;}}
 {{tab}}{{/brace}}
