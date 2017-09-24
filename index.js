@@ -47,6 +47,6 @@ module.exports = function (dest, options) {
         console.log('Grid length is ' + res.grid.length + ' :)');
         console.log("Its work! Good day!");
     } catch (err) {
-        console.log("Oops -> " + err);
+        console.log("Oops -> " + err.stack);
     }
 }
