@@ -2,4 +2,5 @@
 /.git/*
 /node_modules/*
 /tmp/*
+/old/*
 /todo.txt

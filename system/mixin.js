@@ -1,24 +1,23 @@
-function Mixin(pattern, name, params, content) {
-    this.pattern = pattern.toString();
-    this.name = name;
-    this.params = params;
-    this.content = content;    
-    
-    this.replaces = {
-        name: this.name,
-        params: this.params,
-        content: this.content
-    };
-}
+class Mixin{
+    constructor(pattern, name, params, content){
+        this.pattern = pattern.toString();
 
-Mixin.prototype.render = function(){
-    var out = this.pattern;
-    
-    for(var key in this.replaces){
-        out = out.replace('{{' + key + '}}', this.replaces[key]);
+        this.replaces = {
+            name: name,
+            params: params,
+            content: content
+        };
     }
     
-    return out;
+    render(){
+        let out = this.pattern;
+    
+        for(let key in this.replaces){
+            out = out.replace('{{' + key + '}}', this.replaces[key]);
+        }
+
+        return out;
+    }
 }
 
-module.exports.create = Mixin;
+module.exports = Mixin;

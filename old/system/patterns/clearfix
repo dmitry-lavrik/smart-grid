@@ -1,0 +1,5 @@
+{{tab}}&::after{{brace}}
+{{tab}}{{tab}}display{{:}}block{{;}}
+{{tab}}{{tab}}content{{:}}""{{;}}
+{{tab}}{{tab}}clear{{:}}both{{;}}
+{{tab}}{{/brace}}
