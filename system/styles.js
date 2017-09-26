@@ -40,7 +40,16 @@ class Styles{
             }
         }
         else if(properties.length > 1){
+            styles += this.left(offset);
             
+            if(callable === ''){
+                styles += this.objToStyles(obj, left);
+            }
+            else{
+                let inner = this.objToStyles(obj, left + 1);
+                styles += `{{call}}${callable}{{block_callable_brace}}${inner}`;
+                styles += this.left(offset) + '{{/block_callable_brace}}';
+            }
         }
 
         return styles;

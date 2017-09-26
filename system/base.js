@@ -49,7 +49,7 @@ class Base{
 
         for (let name in this.resources.settings.breakPoints) {
             let point = this.resources.settings.breakPoints[name];
-            let media = new this.resources.media("{{var}}break_" + name);
+            /*let media = new this.resources.media("{{var}}break_" + name);
 
             let containerMedia = {
                 'padding-left': point.fields,
@@ -57,7 +57,11 @@ class Base{
             };
 
             let cont = this.resources.styles.objToStyles(containerMedia);
-            wrapAndMixinWrap += "\n\n" + media.wrap(cont, 1);
+            wrapAndMixinWrap += "\n\n" + media.wrap(cont, 1);*/
+            wrapAndMixinWrap += '\n\n' + this.resources.styles.objToCallMedia(name + '-block', {
+                'padding-left': point.fields,
+                'padding-right': point.fields
+            }, 1);
         }
 
         let mixinWrapper = new this.resources.mixin(this.resources.patterns.mixin, this.resources.settings.mixinNames.container, '', wrapAndMixinWrap);

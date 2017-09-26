@@ -61,7 +61,9 @@ function Build(settings, patterns) {
     let clearfix = new resources.mixin(resources.patterns.mixin, 'clearfix', '', resources.patterns.clearfix);
     str += clearfix.render();
     
-    str = (new resources.replaces(resources)).all(str, resources.settings.outputStyle);
+    let replaces = new resources.replaces(resources);
+    str = replaces.all(str, resources.settings.outputStyle);
+    str = replaces.fixLines(str);
     
     return {
         res: true,

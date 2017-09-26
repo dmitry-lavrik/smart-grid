@@ -19,7 +19,9 @@ class Replaces {
                 '{{:}}': ': ',
                 '{{;}}': ';',
                 '{{block-content-var}}': '@content',
-                '{{block-content-extract}}': '@content()'
+                '{{block-content-extract}}': '@content()',
+                '{{block_callable_brace}}': '({\n',
+                '{{/block_callable_brace}}': '});'
             },
             scss: {
                 '{{var}}': '$',
@@ -35,7 +37,9 @@ class Replaces {
                 '{{:}}': ': ',
                 '{{;}}': ';',
                 '{{block-content-var}}': '',
-                '{{block-content-extract}}': '@content'
+                '{{block-content-extract}}': '@content',
+                '{{block_callable_brace}}': '{\n',
+                '{{/block_callable_brace}}': '}'
             },
             styl: {
                 '{{var}}': '$',
@@ -51,7 +55,9 @@ class Replaces {
                 '{{:}}': ' ',
                 '{{;}}': '',
                 '{{block-content-var}}': 'content',
-                '{{block-content-extract}}': '{content}'
+                '{{block-content-extract}}': '{content}',
+                '{{block_callable_brace}}': '(@block{\n',
+                '{{/block_callable_brace}}': '})'
             },
             sass: {
                 '{{var}}': '$',
@@ -67,7 +73,9 @@ class Replaces {
                 '{{:}}': ': ',
                 '{{;}}': '',
                 '{{block-content-var}}': '',
-                '{{block-content-extract}}': '@content'
+                '{{block-content-extract}}': '@content',
+                '{{block_callable_brace}}': '\n',
+                '{{/block_callable_brace}}': ''
             }
         };
 
@@ -109,6 +117,18 @@ class Replaces {
         }
 
         return out;
+    }
+    
+    fixLines(str){
+        let reg = new RegExp(`\n(${this.resources.settings.tab})*\n\n`, 'g');
+        
+        str = str.replace(/\r\n/g, '\n');
+                
+        while(str.match(reg) !== null){
+            str = str.replace(reg, '\n\n');
+        }
+        
+        return str;
     }
 }
 
