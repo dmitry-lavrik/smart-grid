@@ -7,8 +7,10 @@ function Build(settings, patterns) {
     resources.media = require('./system/media.js');
     resources.helpers = require('./system/helpers.js');
     resources.size = require('./system/size.js');
+    resources.styles = require('./system/styles.js');
     resources.replaces = require('./system/replaces.js');
    
+    let base = require('./system/base.js');
     let globalMediaCondition = settings.mobileFirst ? 'min-width' : 'max-width';
   
     let str = '';
@@ -25,6 +27,8 @@ function Build(settings, patterns) {
     }
     
     str += '\n';
+    
+    str += (new base(resources)).render();
     
     let size = new resources.size(resources, resources.settings.mixinNames.size);
     str += size.render() + "\n\n";
@@ -48,6 +52,14 @@ function Build(settings, patterns) {
     
     let reset = new resources.mixin(resources.patterns.mixin, resources.settings.mixinNames.reset, '', resources.patterns.reset);
     str += reset.render();
+    str += "\n\n";
+    
+    let debug = new resources.mixin(resources.patterns.mixin, resources.settings.mixinNames.debug, '{{var}}background, {{var}}outline', resources.patterns.debug);
+    str += debug.render();
+    str += "\n\n";
+    
+    let clearfix = new resources.mixin(resources.patterns.mixin, 'clearfix', '', resources.patterns.clearfix);
+    str += clearfix.render();
     
     str = (new resources.replaces(resources)).all(str, resources.settings.outputStyle);
     

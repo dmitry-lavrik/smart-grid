@@ -1,4 +1,3 @@
-{{before_mixin}}debug({{var}}background, {{var}}outline){{brace}}
 {{tab}}height{{:}}100vh{{;}}
 {{tab}}position{{:}}fixed{{;}}
 {{tab}}width{{:}}100%{{;}}
@@ -20,4 +19,3 @@
 {{tab}}{{tab}}{{tab}}{{/brace}}
 {{tab}}{{tab}}{{/brace}}
 {{tab}}{{/brace}}
-{{/brace}}

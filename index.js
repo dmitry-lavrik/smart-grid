@@ -28,7 +28,7 @@ module.exports = function (dest, options) {
         }
         
         let patterns = {};
-        patterns.mixin = fs.readFileSync(root + '/system/patterns/minix');
+        patterns.mixin = fs.readFileSync(root + '/system/patterns/mixin');
         patterns.clearfix = fs.readFileSync(root + '/system/patterns/clearfix');
         patterns.reset = fs.readFileSync(root + '/system/patterns/reset');
         patterns.debug = fs.readFileSync(root + '/system/patterns/debug');

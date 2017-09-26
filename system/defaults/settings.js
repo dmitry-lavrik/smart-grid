@@ -35,7 +35,8 @@ module.exports = {
         columnFloat: "col-float",
         columnPadding: "col-padding",
         offset: "offset",
-        reset: "reset"
+        reset: "reset",
+        debug: "debug"
     },
     tab: "    "
 };
