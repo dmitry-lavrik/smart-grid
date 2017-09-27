@@ -41,8 +41,8 @@ class Base{
         let out = "";
 
         let containerFull = {
-            'padding-left': this.resources.settings.container.fields,
-            'padding-right': this.resources.settings.container.fields
+            'padding-left': "{{var}}fields",
+            'padding-right': "{{var}}fields"
         };
         
         let rowOffsets = {
@@ -64,15 +64,15 @@ class Base{
             
             if(point.fields !== undefined){
                 containerStyles += '\n\n' + this.resources.styles.objToCallMedia(name + '-block', {
-                    'padding-left': point.fields,
-                    'padding-right': point.fields
+                    'padding-left': "{{var}}fields_" + name,
+                    'padding-right': "{{var}}fields_" + name
                 }, 1);
             }
             
             if(point.offset !== undefined){
                 rowStyles += '\n\n' + this.resources.styles.objToCallMedia(name + '-block', {
-                    'margin-left': `(${point.offset} / -2)`,
-                    'margin-right': `(${point.offset} / -2)`
+                    'margin-left': `({{var}}offset_${name}_one_side * -1)`,
+                    'margin-right': `({{var}}offset_${name}_one_side * -1)`
                 }, 1);
             }
         }

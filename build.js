@@ -16,14 +16,38 @@ function Build(settings, patterns) {
     let str = '';
    
     str += "{{var}}columns{{=}}" + resources.settings.columns + '{{;}}\n';
+    str += "{{var}}atom{{=}}(100% / {{var}}columns){{;}}\n";
+    
+    str += '\n';
+    
+    for (let name in resources.settings.breakPoints) {
+        str += "{{var}}break_" + name + '{{=}}' + resources.settings.breakPoints[name].width + "{{;}}\n";
+    }
+    
+    str += '\n';
+    
     str += "{{var}}offset{{=}}" + resources.settings.offset + '{{;}}\n';
     str += "{{var}}offset_one_side{{=}}({{var}}offset / 2){{;}}\n";
-    str += "{{var}}atom{{=}}(100% / {{var}}columns){{;}}\n";
+
+    for (let name in resources.settings.breakPoints) {
+        let br = resources.settings.breakPoints[name];
+        
+        if(br.offset !== undefined){
+            str += "\n\n{{var}}offset_" + name + '{{=}}' + br.offset + "{{;}}\n";
+            str += `{{var}}offset_${name}_one_side{{=}}({{var}}offset_${name} / 2){{;}}\n`;
+        }
+    }
 
     str += '\n';
 
+    str += "{{var}}fields{{=}}" + resources.settings.container.fields + '{{;}}\n';
+    
     for (let name in resources.settings.breakPoints) {
-        str += "{{var}}break_" + name + '{{=}}' + resources.settings.breakPoints[name].width + "{{;}}\n";
+        let br = resources.settings.breakPoints[name];
+        
+        if(br.fields !== undefined){
+            str += "{{var}}fields_" + name + '{{=}}' + br.fields + "{{;}}\n";
+        }
     }
     
     str += '\n';
