@@ -27,15 +27,27 @@ function Build(settings, patterns) {
     str += '\n';
     
     str += "{{var}}offset{{=}}" + resources.settings.offset + '{{;}}\n';
-    str += "{{var}}offset_one_side{{=}}({{var}}offset / 2){{;}}\n";
+    
+    let last_offset = "{{var}}offset";
 
     for (let name in resources.settings.breakPoints) {
         let br = resources.settings.breakPoints[name];
         
         if(br.offset !== undefined){
-            str += "\n\n{{var}}offset_" + name + '{{=}}' + br.offset + "{{;}}\n";
-            str += `{{var}}offset_${name}_one_side{{=}}({{var}}offset_${name} / 2){{;}}\n`;
+            str += "{{var}}offset_" + name + '{{=}}' + br.offset + "{{;}}\n";
+            last_offset = "{{var}}offset_" + name;
         }
+        else{
+            str += "{{var}}offset_" + name + '{{=}}' + last_offset + "{{;}}\n";
+        }
+    }
+
+    str += '\n';
+
+    str += "{{var}}offset_one_side{{=}}({{var}}offset / 2){{;}}\n";
+    
+    for (let name in resources.settings.breakPoints) {
+        str += `{{var}}offset_${name}_one_side{{=}}({{var}}offset_${name} / 2){{;}}\n`;
     }
 
     str += '\n';

@@ -79,8 +79,23 @@ module.exports = function (dest, options) {
         patterns.mixin = fs.readFileSync(root + '/system/patterns/mixin');
         patterns.clearfix = fs.readFileSync(root + '/system/patterns/clearfix');
         patterns.reset = fs.readFileSync(root + '/system/patterns/reset');
-        patterns.debug = fs.readFileSync(root + '/system/patterns/debug');
         patterns.fromTo = fs.readFileSync(root + '/system/patterns/fromTo');
+
+        let patternDebug = fs.readFileSync(root + '/system/patterns/debug');
+        let sizeCalling = ['(1)'];
+        
+        for(let name in options.breakPoints){
+            if(options.breakPoints[name].offset !== undefined){
+                sizeCalling.push(`-${name}(1)`);
+            }
+        }
+        
+        for(let i = 0; i < sizeCalling.length; i++){
+            sizeCalling[i] = '{{tab}}{{tab}}{{tab}}{{tab}}{{call}}' + options.mixinNames.size + sizeCalling[i] + '{{;}}';
+        }
+
+        patterns.debug = patternDebug.toString().replace('{{sizes}}', sizeCalling.join('\n'), 'g');;
+        
 
         let build = require('./build.js');
         let res = build(options, patterns);

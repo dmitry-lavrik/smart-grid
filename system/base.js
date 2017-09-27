@@ -4,6 +4,8 @@ class Base{
         let cfull = `{{call}}${this.resources.settings.mixinNames.container}-full()`;
         let clfix = `{{call}}${this.resources.settings.mixinNames.clearfix}()`;
         let roff = `{{call}}${this.resources.settings.mixinNames.rowOffsets}()`;
+        let coffMargin = `{{call}}${this.resources.settings.mixinNames.columnOffsets}(margin)`;
+        let coffPadding = `{{call}}${this.resources.settings.mixinNames.columnOffsets}(padding)`;
         
         this.content = {
             container: {
@@ -22,17 +24,15 @@ class Base{
             },
             column: {
                 'box-sizing': "border-box",
-                'margin-left': "{{var}}offset_one_side",
-                'margin-right': "{{var}}offset_one_side",
-                'word-wrap': "break-word"
+                'word-wrap': "break-word",
+                [coffMargin]: null
             },
             columnFloat: {
                 'float': 'left'
             },
             columnPadding: {
-                'padding-left': "{{var}}offset_one_side",
-                'padding-right': "{{var}}offset_one_side",
-                'word-wrap': "break-word"
+                'word-wrap': "break-word",
+                [coffPadding]: null
             }
         };
     }
@@ -49,15 +49,25 @@ class Base{
             'margin-left': "({{var}}offset_one_side * -1)",
             'margin-right': "({{var}}offset_one_side * -1)"
         }
+        
+        let colOffsets = {
+            '{{string-var}}type{{/string-var}}-left': "{{var}}offset_one_side",
+            '{{string-var}}type{{/string-var}}-right': "{{var}}offset_one_side"
+        }
 
         let containerStyles = '';
         let rowStyles = '';
+        let colStyles = '';
 
         let cont = this.resources.styles.objToStyles(containerFull, 1);
         let row = this.resources.styles.objToStyles(rowOffsets, 1);
+        let col = this.resources.styles.objToStyles(colOffsets, 1);
+        
         let media = new this.resources.media();
+        
         containerStyles += media.wrap(cont);
         rowStyles += media.wrap(row);
+        colStyles += media.wrap(col);
 
         for (let name in this.resources.settings.breakPoints) {
             let point = this.resources.settings.breakPoints[name];
@@ -74,6 +84,11 @@ class Base{
                     'margin-left': `({{var}}offset_${name}_one_side * -1)`,
                     'margin-right': `({{var}}offset_${name}_one_side * -1)`
                 }, 1);
+                
+                colStyles += '\n\n' + this.resources.styles.objToCallMedia(name + '-block', {
+                    '{{string-var}}type{{/string-var}}-left': `{{var}}offset_${name}_one_side`,
+                    '{{string-var}}type{{/string-var}}-right': `{{var}}offset_${name}_one_side`
+                }, 1);
             }
         }
 
@@ -82,6 +97,9 @@ class Base{
         
         let mixinRow = new this.resources.mixin(this.resources.patterns.mixin, this.resources.settings.mixinNames.rowOffsets , '', rowStyles);
         out += mixinRow.render(this.resources.settings.outputStyle) + '\n\n';
+        
+        let mixinCol = new this.resources.mixin(this.resources.patterns.mixin, this.resources.settings.mixinNames.columnOffsets , '{{var}}type', colStyles);
+        out += mixinCol.render(this.resources.settings.outputStyle) + '\n\n';
 
         for (let name in this.resources.settings.mixinNames) {
             if(this.content[name] !== undefined){
