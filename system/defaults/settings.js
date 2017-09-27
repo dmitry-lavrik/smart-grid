@@ -32,6 +32,7 @@ module.exports = {
         columnFloat: "col-float",
         columnPadding: "col-padding",
         offset: "offset",
+        fromTo: "from-to",
         reset: "reset",
         clearfix: "clearfix",
         debug: "debug"

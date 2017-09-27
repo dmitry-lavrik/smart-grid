@@ -50,6 +50,10 @@ function Build(settings, patterns) {
         str += mix.render(resources.settings.outputStyle) + "\n\n";
     }
     
+    let fromTo = new resources.mixin(resources.patterns.mixin, resources.settings.mixinNames.fromTo, '{{var}}from, {{var}}to{{block-content-var-delimeter}}{{block-content-var}}', resources.patterns.fromTo);
+    str += fromTo.render();
+    str += "\n\n";
+    
     let reset = new resources.mixin(resources.patterns.mixin, resources.settings.mixinNames.reset, '', resources.patterns.reset);
     str += reset.render();
     str += "\n\n";

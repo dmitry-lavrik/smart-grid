@@ -80,6 +80,7 @@ module.exports = function (dest, options) {
         patterns.clearfix = fs.readFileSync(root + '/system/patterns/clearfix');
         patterns.reset = fs.readFileSync(root + '/system/patterns/reset');
         patterns.debug = fs.readFileSync(root + '/system/patterns/debug');
+        patterns.fromTo = fs.readFileSync(root + '/system/patterns/fromTo');
 
         let build = require('./build.js');
         let res = build(options, patterns);
