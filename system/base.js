@@ -3,6 +3,7 @@ class Base{
         this.resources = resources;
         let cfull = `{{call}}${this.resources.settings.mixinNames.container}-full()`;
         let clfix = `{{call}}${this.resources.settings.mixinNames.clearfix}()`;
+        let roff = `{{call}}${this.resources.settings.mixinNames.rowOffsets}()`;
         
         this.content = {
             container: {
@@ -13,12 +14,10 @@ class Base{
             row: {
                 display: "flex",
                 'flex-wrap': "wrap",
-                'margin-left': "({{var}}offset_one_side * -1)",
-                'margin-right': "({{var}}offset_one_side * -1)"
+                [roff]: null
             },
             rowFloat: {
-                'margin-left': "({{var}}offset_one_side * -1)",
-                'margin-right': "({{var}}offset_one_side * -1)",
+                [roff]: null,
                 [clfix]: null
             },
             column: {
@@ -45,26 +44,44 @@ class Base{
             'padding-left': this.resources.settings.container.fields,
             'padding-right': this.resources.settings.container.fields
         };
+        
+        let rowOffsets = {
+            'margin-left': "({{var}}offset_one_side * -1)",
+            'margin-right': "({{var}}offset_one_side * -1)"
+        }
 
-        let wrapAndMixinWrap = '';
+        let containerStyles = '';
+        let rowStyles = '';
 
         let cont = this.resources.styles.objToStyles(containerFull, 1);
+        let row = this.resources.styles.objToStyles(rowOffsets, 1);
         let media = new this.resources.media();
-        wrapAndMixinWrap += media.wrap(cont);
+        containerStyles += media.wrap(cont);
+        rowStyles += media.wrap(row);
 
         for (let name in this.resources.settings.breakPoints) {
             let point = this.resources.settings.breakPoints[name];
             
             if(point.fields !== undefined){
-                wrapAndMixinWrap += '\n\n' + this.resources.styles.objToCallMedia(name + '-block', {
+                containerStyles += '\n\n' + this.resources.styles.objToCallMedia(name + '-block', {
                     'padding-left': point.fields,
                     'padding-right': point.fields
                 }, 1);
             }
+            
+            if(point.offset !== undefined){
+                rowStyles += '\n\n' + this.resources.styles.objToCallMedia(name + '-block', {
+                    'margin-left': `(${point.offset} / -2)`,
+                    'margin-right': `(${point.offset} / -2)`
+                }, 1);
+            }
         }
 
-        let mixinWrapper = new this.resources.mixin(this.resources.patterns.mixin, this.resources.settings.mixinNames.container + '-full', '', wrapAndMixinWrap);
+        let mixinWrapper = new this.resources.mixin(this.resources.patterns.mixin, this.resources.settings.mixinNames.container + '-full', '', containerStyles);
         out += mixinWrapper.render(this.resources.settings.outputStyle) + '\n\n';
+        
+        let mixinRow = new this.resources.mixin(this.resources.patterns.mixin, this.resources.settings.mixinNames.rowOffsets , '', rowStyles);
+        out += mixinRow.render(this.resources.settings.outputStyle) + '\n\n';
 
         for (let name in this.resources.settings.mixinNames) {
             if(this.content[name] !== undefined){

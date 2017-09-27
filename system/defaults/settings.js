@@ -27,6 +27,7 @@ module.exports = {
         container: "wrapper",
         row: "row-flex",
         rowFloat: "row-float",
+        rowOffsets: "row-offsets",
         column: "col",
         size: "size",
         columnFloat: "col-float",
@@ -37,5 +38,6 @@ module.exports = {
         clearfix: "clearfix",
         debug: "debug"
     },
-    tab: "    "
+    tab: "    ",
+    defaultMediaDevice: "screen"
 };

@@ -120,6 +120,8 @@ class Replaces {
             });
         }
 
+        out = out.replace('{{device}}', this.resources.settings.defaultMediaDevice, 'g');
+
         return out;
     }
     

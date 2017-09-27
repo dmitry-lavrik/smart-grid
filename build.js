@@ -39,7 +39,7 @@ function Build(settings, patterns) {
     }
     
     for (let name in resources.settings.breakPoints) {
-        let media = new resources.media("{{var}}break_" + name, globalMediaCondition);
+        let media = new resources.media("{{var}}break_" + name, globalMediaCondition, resources.settings.defaultMediaDevice);
         
         let styles = "{{string-var}}name{{/string-var}}{{:}}{{var}}value{{;}}\n";
         let mix = new resources.mixin(resources.patterns.mixin, name, '{{var}}name, {{var}}value', media.wrap(styles, 1));
