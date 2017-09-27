@@ -27,6 +27,54 @@ module.exports = function (dest, options) {
             }
         }
         
+        let orderedBreakPointsArr = [];
+        let i = 0;
+        let sameUnits= true;
+        
+        for(let name in options.breakPoints){
+            let tmp = {name: name};
+            tmp.point = options.breakPoints[name];
+            
+            orderedBreakPointsArr.push(tmp);
+            
+            if(i > 0){
+                let u1 = orderedBreakPointsArr[i].point.width.replace(/\d(.\d)*/g, '');
+                let u2 = orderedBreakPointsArr[i - 1].point.width.replace(/\d(.\d)*/g, '');
+                
+                if(u1 !== u2){
+                    console.log('Notice: we can`t to order breakPoints with different width units!');
+                    sameUnits = false;
+                    orderedBreakPointsArr = [];
+                    break;
+                }
+            }
+
+            i++;
+        }
+        
+        if(sameUnits){
+            orderedBreakPointsArr.sort(function(a, b){
+                let w1 = parseFloat(a.point.width);
+                let w2 = parseFloat(b.point.width);
+
+                if(w1 > w2){
+                    return options.mobileFirst ? 1 : -1;
+                }
+                else if(w1 < w2){
+                    return options.mobileFirst ? -1 : 1;
+                }
+            });
+            
+            /* перезаписать options.breakPoints */
+            let points = {};
+            
+            for(let i = 0; i < orderedBreakPointsArr.length; i++){
+                points[orderedBreakPointsArr[i].name] = orderedBreakPointsArr[i].point;
+            }
+            
+            options.breakPoints = points;
+        }
+        
         let patterns = {};
         patterns.mixin = fs.readFileSync(root + '/system/patterns/mixin');
         patterns.clearfix = fs.readFileSync(root + '/system/patterns/clearfix');
