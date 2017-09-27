@@ -58,7 +58,7 @@ function Build(settings, patterns) {
     str += debug.render();
     str += "\n\n";
     
-    let clearfix = new resources.mixin(resources.patterns.mixin, 'clearfix', '', resources.patterns.clearfix);
+    let clearfix = new resources.mixin(resources.patterns.mixin, resources.settings.mixinNames.clearfix, '', resources.patterns.clearfix);
     str += clearfix.render();
     
     let replaces = new resources.replaces(resources);

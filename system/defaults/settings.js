@@ -10,20 +10,17 @@ module.exports = {
     },
     breakPoints: {
         lg: {
-            width: "1200px",
-            fields: "30px"
+            width: "1200px"
         },
         md: {
             width: "992px",
             fields: "15px"
         },
         sm: {
-            width: "720px",
-            fields: "15px"
+            width: "720px"
         },
         xs: {
-            width: "576px",
-            fields: "15px"
+            width: "576px"
         }
     },
     mixinNames: {
@@ -36,6 +33,7 @@ module.exports = {
         columnPadding: "col-padding",
         offset: "offset",
         reset: "reset",
+        clearfix: "clearfix",
         debug: "debug"
     },
     tab: "    "

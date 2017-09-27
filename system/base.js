@@ -1,8 +1,15 @@
 class Base{
     constructor(resources){
         this.resources = resources;
+        let cfull = `{{call}}${this.resources.settings.mixinNames.container}-full()`;
+        let clfix = `{{call}}${this.resources.settings.mixinNames.clearfix}()`;
         
         this.content = {
+            container: {
+                'max-width': this.resources.settings.container.maxWidth,
+                margin: "0 auto",
+                [cfull]: null
+            },
             row: {
                 display: "flex",
                 'flex-wrap': "wrap",
@@ -12,7 +19,7 @@ class Base{
             rowFloat: {
                 'margin-left': "({{var}}offset_one_side * -1)",
                 'margin-right': "({{var}}offset_one_side * -1)",
-                '{{call}}clearfix()': null,
+                [clfix]: null
             },
             column: {
                 'box-sizing': "border-box",
@@ -34,37 +41,29 @@ class Base{
     render() {
         let out = "";
 
-        let container = {
-            'max-width': this.resources.settings.container.maxWidth,
+        let containerFull = {
             'padding-left': this.resources.settings.container.fields,
-            'padding-right': this.resources.settings.container.fields,
-            margin: "0 auto"
+            'padding-right': this.resources.settings.container.fields
         };
 
         let wrapAndMixinWrap = '';
 
-        let cont = this.resources.styles.objToStyles(container, 1);
+        let cont = this.resources.styles.objToStyles(containerFull, 1);
         let media = new this.resources.media();
         wrapAndMixinWrap += media.wrap(cont);
 
         for (let name in this.resources.settings.breakPoints) {
             let point = this.resources.settings.breakPoints[name];
-            /*let media = new this.resources.media("{{var}}break_" + name);
-
-            let containerMedia = {
-                'padding-left': point.fields,
-                'padding-right': point.fields
-            };
-
-            let cont = this.resources.styles.objToStyles(containerMedia);
-            wrapAndMixinWrap += "\n\n" + media.wrap(cont, 1);*/
-            wrapAndMixinWrap += '\n\n' + this.resources.styles.objToCallMedia(name + '-block', {
-                'padding-left': point.fields,
-                'padding-right': point.fields
-            }, 1);
+            
+            if(point.fields !== undefined){
+                wrapAndMixinWrap += '\n\n' + this.resources.styles.objToCallMedia(name + '-block', {
+                    'padding-left': point.fields,
+                    'padding-right': point.fields
+                }, 1);
+            }
         }
 
-        let mixinWrapper = new this.resources.mixin(this.resources.patterns.mixin, this.resources.settings.mixinNames.container, '', wrapAndMixinWrap);
+        let mixinWrapper = new this.resources.mixin(this.resources.patterns.mixin, this.resources.settings.mixinNames.container + '-full', '', wrapAndMixinWrap);
         out += mixinWrapper.render(this.resources.settings.outputStyle) + '\n\n';
 
         for (let name in this.resources.settings.mixinNames) {
