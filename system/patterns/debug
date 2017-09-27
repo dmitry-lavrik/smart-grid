@@ -8,10 +8,10 @@
 {{tab}}{{tab}}
 {{tab}}{{tab}}> div{{brace}}
 {{tab}}{{tab}}{{tab}}height{{:}}inherit{{;}}
-{{tab}}{{tab}}{{tab}}{{call}}row-flex(){{;}}
+{{tab}}{{tab}}{{tab}}{{call}}{{mixinNames.row-flex}}(){{;}}
 {{tab}}{{tab}}{{tab}}
 {{tab}}{{tab}}{{tab}}> div{{brace}}
-{{tab}}{{tab}}{{tab}}{{tab}}{{call}}col(){{;}}
+{{tab}}{{tab}}{{tab}}{{tab}}{{call}}{{mixinNames.col}}(){{;}}
 {{sizes}}
 {{tab}}{{tab}}{{tab}}{{tab}}height{{:}}inherit{{;}}
 {{tab}}{{tab}}{{tab}}{{tab}}outline{{:}}{{var}}outline{{;}}

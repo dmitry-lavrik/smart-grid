@@ -94,8 +94,10 @@ module.exports = function (dest, options) {
             sizeCalling[i] = '{{tab}}{{tab}}{{tab}}{{tab}}{{call}}' + options.mixinNames.size + sizeCalling[i] + '{{;}}';
         }
 
-        patterns.debug = patternDebug.toString().replace('{{sizes}}', sizeCalling.join('\n'), 'g');;
-        
+        patterns.debug = patternDebug.toString()
+                                     .replace('{{sizes}}', sizeCalling.join('\n'), 'g')
+                                     .replace('{{mixinNames.row-flex}}', options.mixinNames.row, 'g')
+                                     .replace('{{mixinNames.col}}', options.mixinNames.column, 'g');
 
         let build = require('./build.js');
         let res = build(options, patterns);
