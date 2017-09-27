@@ -38,7 +38,7 @@ class Replaces {
                 '{{;}}': ';',
                 '{{block-content-var}}': '',
                 '{{block-content-extract}}': '@content',
-                '{{block_callable_brace}}': '{\n',
+                '{{block_callable_brace}}': '(){\n',
                 '{{/block_callable_brace}}': '}'
             },
             styl: {
@@ -74,7 +74,7 @@ class Replaces {
                 '{{;}}': '',
                 '{{block-content-var}}': '',
                 '{{block-content-extract}}': '@content',
-                '{{block_callable_brace}}': '\n',
+                '{{block_callable_brace}}': '()\n',
                 '{{/block_callable_brace}}': ''
             }
         };
