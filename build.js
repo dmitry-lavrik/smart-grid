@@ -86,7 +86,19 @@ function Build(settings, patterns) {
         str += mix.render(resources.settings.outputStyle) + "\n\n";
     }
     
-    let fromTo = new resources.mixin(resources.patterns.mixin, resources.settings.mixinNames.fromTo, '{{var}}from, {{var}}to{{block-content-var-delimeter}}{{block-content-var}}', resources.patterns.fromTo);
+    let fromMedia = new resources.media("{{var}}min_width", 'min-width', resources.settings.defaultMediaDevice);
+    let fromCommand = '{{block-content-extract}}{{;}}\n';
+    let from = new resources.mixin(resources.patterns.mixin, resources.settings.mixinNames.from, '{{var}}min_width{{block-content-var-delimeter}}{{block-content-var}}', fromMedia.wrap(fromCommand, 1));
+    str += from.render();
+    str += "\n\n";
+    
+    let toMedia = new resources.media("{{var}}max_width", 'max-width', resources.settings.defaultMediaDevice);
+    let toCommand = '{{block-content-extract}}{{;}}\n';
+    let to = new resources.mixin(resources.patterns.mixin, resources.settings.mixinNames.to, '{{var}}max_width{{block-content-var-delimeter}}{{block-content-var}}', toMedia.wrap(toCommand, 1));
+    str += to.render();
+    str += "\n\n";
+    
+    let fromTo = new resources.mixin(resources.patterns.mixin, resources.settings.mixinNames.fromTo, '{{var}}min_width, {{var}}max_width{{block-content-var-delimeter}}{{block-content-var}}', resources.patterns.fromTo);
     str += fromTo.render();
     str += "\n\n";
     
