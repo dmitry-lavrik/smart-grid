@@ -12,11 +12,12 @@ class Size{
 
         if(this.resources.helpers.isPercentage(this.resources.settings.offset)){
             style += this.resources.styles.objToCallMedia(this.postfix, {
-                width: `{{var}}atom * {{var}}n - {{var}}offset${mediaPostfix}{{;}}`
+                width: `{{var}}atom * {{var}}n - {{var}}offset${mediaPostfix}`
             });
         }
         else{
             style += `{{var}}val{{=}}{{i}}calc(100% / {{string-var}}columns{{/string-var}} * {{string-var}}n{{/string-var}} - {{string-var}}offset${mediaPostfix}{{/string-var}}){{/i}}{{;}}\n`;
+            
             style += this.resources.styles.objToCallMedia(this.postfix, {
                 width: '{{var}}val'
             });

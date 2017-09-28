@@ -47,7 +47,7 @@ class Shift{
                     }
                     
                     styles += this.resources.styles.objToCallMedia(this.postfix, {
-                        [this.map[i].props[j]]: `{{var}}atom * {{var}}n + {{var}}offset${mediaPostfix}_one_side{{;}}`
+                        [this.map[i].props[j]]: `{{var}}atom * {{var}}n + {{var}}offset${mediaPostfix}_one_side`
                     });
                 }
             }
