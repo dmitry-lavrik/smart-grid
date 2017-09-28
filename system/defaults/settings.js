@@ -33,7 +33,7 @@ module.exports = {
         columnFloat: "col-float",
         columnPadding: "col-padding",
         columnOffsets: "col-offsets",
-        offset: "shift",
+        shift: "shift",
         from: "from",
         to: "to",
         fromTo: "from-to",

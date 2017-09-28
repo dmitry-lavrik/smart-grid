@@ -7,6 +7,7 @@ function Build(settings, patterns) {
     resources.media = require('./system/media.js');
     resources.helpers = require('./system/helpers.js');
     resources.size = require('./system/size.js');
+    resources.shift = require('./system/shift.js');
     resources.styles = require('./system/styles.js');
     resources.replaces = require('./system/replaces.js');
    
@@ -72,6 +73,14 @@ function Build(settings, patterns) {
     for (let name in resources.settings.breakPoints) {
         size = new resources.size(resources, resources.settings.mixinNames.size, name);
         str += size.render() + "\n\n";
+    }
+    
+    let shift = new resources.shift(resources, resources.settings.mixinNames.shift);
+    str += shift.render() + "\n\n";
+    
+    for (let name in resources.settings.breakPoints) {
+        shift = new resources.shift(resources, resources.settings.mixinNames.shift, name);
+        str += shift.render() + "\n\n";
     }
     
     for (let name in resources.settings.breakPoints) {
