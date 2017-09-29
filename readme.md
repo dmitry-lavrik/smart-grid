@@ -5,7 +5,7 @@
 ```
 $ npm i smart-grid --save-dev
 ```
-
+##### smart-grid 2.0.0 is in beta! You can use stable version 1.1.0
 ## Usage
 
 ```js
