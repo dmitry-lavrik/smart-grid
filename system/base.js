@@ -22,17 +22,24 @@ class Base{
                 [roff]: null,
                 [clfix]: null
             },
+            rowInlineBlock: {
+                [roff]: null
+            },
             column: {
                 'box-sizing': "border-box",
                 'word-wrap': "break-word",
                 [coffMargin]: null
             },
-            columnFloat: {
-                'float': 'left'
-            },
             columnPadding: {
                 'word-wrap': "break-word",
                 [coffPadding]: null
+            },
+            columnFloat: {
+                float: 'left'
+            },
+            columnInlineBlock: {
+                display: 'inline-block',
+                'vertical-align': 'top'
             }
         };
     }
