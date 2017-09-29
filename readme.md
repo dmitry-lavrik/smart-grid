@@ -3,7 +3,7 @@
 ## Install
 
 ```
-$ npm i smart-grid
+$ npm i smart-grid --save-dev
 ```
 
 ## Usage
@@ -16,6 +16,7 @@ var settings = {
     outputStyle: 'less', /* less || scss || sass || styl */
     columns: 12, /* number of grid columns */
     offset: '30px', /* gutter width px || % */
+    mobileFirst: false, /* mobileFirst ? 'min-width' : 'max-width' */
     container: {
         maxWidth: '1200px', /* max-width оn very large screen */
         fields: '30px' /* side fields */
@@ -23,26 +24,24 @@ var settings = {
     breakPoints: {
         lg: {
             width: '1100px', /* -> @media (max-width: 1100px) */
-            fields: '30px' /* side fields */
         },
         md: {
-            width: '960px',
-            fields: '15px'
+            width: '960px'
         },
         sm: {
             width: '780px',
-            fields: '15px'
+            fields: '15px' /* set fields only if you want to change container.fields */
         },
         xs: {
-            width: '560px',
-            fields: '15px'
+            width: '560px'
         }
         /* 
         We can create any quantity of break points.
 
         some_name: {
-            some_width: 'Npx',
-            some_offset: 'N(px|%)'
+            width: 'Npx',
+            fields: 'N(px|%|rem)',
+            offset: 'N(px|%|rem)'
         }
         */
     }
@@ -62,11 +61,11 @@ The fact that the standard bootstrap grid, makes us write a lot of classes in ht
 In the proposed version, we do not touch at all the classes in the html code, but only add the mixins to the existing selectors.
 
 ### Sample. We write
-
+LESS
 ```less
 .items{
     .row-flex();
-    .justify-content-md(center);
+    .md(justify-content, center);
 
     .item{
         .col();
@@ -76,7 +75,44 @@ In the proposed version, we do not touch at all the classes in the html code, bu
     }
 }
 ```
+OR SCSS
+```scss
+.items{
+    @include row-flex();
+    @include md(justify-content, center);
 
+    .item{
+        @include col();
+        @include size(3);
+        @include size-md(5);
+        @include size-xs(10);
+    }
+}
+```
+OR SASS
+```sass
+.items
+    +row-flex()
+    +md(justify-content, center)
+
+    .item
+        +col()
+        +size(3)
+        +size-md(5)
+        +size-xs(10)
+```
+OR Stylus
+```stylus
+.items
+    row-flex()
+    md(justify-content, center)
+
+    .item
+        col()
+        size(3)
+        size-md(5)
+        size-xs(10)
+```
 ### And we get big CSS
 
 ```css
@@ -96,16 +132,16 @@ In the proposed version, we do not touch at all the classes in the html code, bu
     margin-left: 15px;
     margin-right: 15px;
     word-wrap: break-word;
-    width: calc(25% - 30px);
+    width: calc(100% / 12 * 3 - 30px);
 }
 @media screen and (max-width: 992px) {
     .items .item {
-        width: calc(41.66666666666667% - 30px);
+        width: calc(100% / 12 * 5 - 30px);
     }
 }
 @media screen and (max-width: 576px) {
     .items .item {
-        width: calc(83.33333333333334% - 30px);
+        width: calc(100% / 12 * 10 - 30px);
     }
 }
 ```
@@ -126,19 +162,19 @@ It's nice! But it's generate a lot of media queries.
     margin-left: 15px;
     margin-right: 15px;
     word-wrap: break-word;
-    width: calc(25% - 30px);
+    width: calc(100% / 12 * 3 - 30px);
 }
 @media screen and (max-width: 992px) {
     .items {
         justify-content: center;
     }
     .items .item {
-        width: calc(41.66666666666667% - 30px);
+        width: calc(100% / 12 * 5 - 30px);
     }
 }
 @media screen and (max-width: 576px) {
     .items .item {
-        width: calc(83.33333333333334% - 30px);
+        width: calc(100% / 12 * 10 - 30px);
     }
 }
 ```
@@ -151,7 +187,3 @@ It's nice! But it's generate a lot of media queries.
     - group-css-media-queries
     - autoprefixer
     - clean-css
-
-## Video and text tutorials on Smart Grid
-
-Coming in 2017!
