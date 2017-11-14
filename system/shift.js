@@ -51,7 +51,7 @@ class Shift{
                     });
                 }
             }
-            else{
+            else if(this.resources.settings.detailedCalc){
                 styles += `{{var}}val{{=}}{{i}}calc(100% / {{string-var}}columns{{/string-var}} * {{string-var}}n{{/string-var}} + {{string-var}}offset${mediaPostfix}_one_side{{/string-var}}){{/i}}{{;}}\n`;
                 
                 for(let j = 0; j < this.map[i].props.length; j++){
@@ -61,6 +61,19 @@ class Shift{
                     
                     styles += this.resources.styles.objToCallMedia(this.postfix, {
                         [this.map[i].props[j]]: '{{var}}val'
+                    });
+                }
+            }
+            else{
+                styles += `{{var}}val{{=}}100% / {{var}}columns * {{var}}n{{;}}\n`;
+                
+                for(let j = 0; j < this.map[i].props.length; j++){
+                    if(j > 0){
+                        styles += '\n';
+                    }
+                    
+                    styles += this.resources.styles.objToCallMedia(this.postfix, {
+                        [this.map[i].props[j]]: `{{i}}calc({{string-var}}val{{/string-var}} + {{string-var}}offset${mediaPostfix}_one_side{{/string-var}}){{/i}}`
                     });
                 }
             }

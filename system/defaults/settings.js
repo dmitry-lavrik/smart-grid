@@ -44,5 +44,6 @@ module.exports = {
         debug: "debug"
     },
     tab: "    ",
-    defaultMediaDevice: "screen"
+    defaultMediaDevice: "screen",
+    detailedCalc: false
 };
