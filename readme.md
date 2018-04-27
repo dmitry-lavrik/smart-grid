@@ -8,6 +8,8 @@ $ npm i smart-grid --save-dev
 ##### smart-grid 2.0.0 is in beta! You can use stable version 1.1.0
 ## Usage
 
+* Create a file with the following config. Tweak it where needed.
+
 ```js
 var smartgrid = require('smart-grid');
 
@@ -50,17 +52,24 @@ var settings = {
 smartgrid('./path-to-your-folder', settings);
 ```
 
+* Run this file with node
+
+```
+node smart-grid-config.js
+```
+
 ## Why? How does it work?
 
 We set JS array with settings and get LESS, SCSS, SASS or Stylus file with Smart Grid.
 
 ### And what?
 
-The fact that the standard bootstrap grid, makes us write a lot of classes in html, that spoils the structure of the code.
+Standard bootstrap grid forces us to write a lot of classes in html and spoils the structure of the code.
 
-In the proposed version, we do not touch at all the classes in the html code, but only add the mixins to the existing selectors.
+In the proposed version, we won't touch classes in the html code at all. Instead we'll only add mixins to the existing selectors.
 
-### Sample. We write
+### Usage examples
+
 LESS
 ```less
 .items{
@@ -113,7 +122,7 @@ OR Stylus
         size-md(5)
         size-xs(10)
 ```
-### And we get big CSS
+### Result is large CSS
 
 ```css
 .items {
@@ -146,9 +155,9 @@ OR Stylus
 }
 ```
 
-It's nice! But it's generate a lot of media queries.
+Mostly nice! But too many media queries.
 
-### But after use group-css-media-queries get the same code written by hand.
+### After using group-css-media-queries media queries are neatly grouped, same as you would do manually
 
 ```css
 .items {
@@ -181,9 +190,9 @@ It's nice! But it's generate a lot of media queries.
 
 ### So, ideal CSS scheme
 
-1. Smart Grid generate libruary for LESS, SCSS, SASS or Stylus
-2. We used mixins to write code quickly
-3. And finaly, we used:
+1. Smart Grid generates mixins for LESS, SCSS, SASS or Stylus
+2. You use mixins to write code quickly
+3. And finaly, we compile the result through:
     - group-css-media-queries
     - autoprefixer
     - clean-css
