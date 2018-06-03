@@ -47,7 +47,7 @@ class Styles{
             }
             else{
                 let inner = this.objToStyles(obj, left + 1);
-                styles += `{{call}}${callable}{{block_callable_brace}}${inner}`;
+                styles += `{{call_with_content}}${callable}{{block_callable_brace}}${inner}`;
                 styles += this.left(offset) + '{{/block_callable_brace}}';
             }
         }

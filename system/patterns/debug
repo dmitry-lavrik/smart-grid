@@ -4,7 +4,7 @@
 {{tab}}
 {{tab}}> div{{brace}}
 {{tab}}{{tab}}height{{:}}inherit{{;}}
-{{tab}}{{tab}}{{call}}wrapper(){{;}}
+{{tab}}{{tab}}{{call}}{{mixinNames.container}}(){{;}}
 {{tab}}{{tab}}
 {{tab}}{{tab}}> div{{brace}}
 {{tab}}{{tab}}{{tab}}height{{:}}inherit{{;}}

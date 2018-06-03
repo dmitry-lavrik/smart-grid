@@ -96,6 +96,7 @@ module.exports = function (dest, options) {
 
         patterns.debug = patternDebug.toString()
                                      .replace('{{sizes}}', sizeCalling.join('\n'), 'g')
+                                     .replace('{{mixinNames.container}}', options.mixinNames.container, 'g')
                                      .replace('{{mixinNames.row-flex}}', options.mixinNames.row, 'g')
                                      .replace('{{mixinNames.col}}', options.mixinNames.column, 'g');
 

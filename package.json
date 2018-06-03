@@ -1,6 +1,6 @@
 {
   "name": "smart-grid",
-  "version": "2.0.1",
+  "version": "2.1.1",
   "description": "Smart CSS Grid with different preprocessors: LESS, SCSS, SASS or Stylus",
   "main": "index.js",
   "dependencies": {},
@@ -16,7 +16,7 @@
     "stylus"
   ],
   "author": "Dmitry Lavrik",
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://github.com/dmitry-lavrik/smart-grid#readme",
   "repository": {
     "type": "git",
