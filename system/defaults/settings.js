@@ -41,7 +41,10 @@ module.exports = {
         fromTo: "from-to",
         reset: "reset",
         clearfix: "clearfix",
-        debug: "debug"
+        debug: "debug",
+        uRowFlex: "u-row-flex",
+        uColumn: "u-col",
+        uSize: "u-size"
     },
     tab: "    ",
     defaultMediaDevice: "screen",

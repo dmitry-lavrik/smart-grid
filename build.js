@@ -111,6 +111,53 @@ function Build(settings, patterns) {
     str += fromTo.render();
     str += "\n\n";
     
+    /* user rows start */
+    let emptyMedia = new resources.media();
+       
+    /* row */
+    let uRowCommands = resources.styles.objToStyles({
+                            display: 'flex',
+                            'flex-wrap': 'wrap',
+                            'margin-left': '({{var}}offset / -2)',
+                            'margin-right': '({{var}}offset / -2)'
+                       }, 1); 
+
+    let urow = new resources.mixin(resources.patterns.mixin, 
+                                   resources.settings.mixinNames.uRowFlex, 
+                                   '{{var}}offset', 
+                                   emptyMedia.wrap(uRowCommands));
+    str += urow.render();
+    str += "\n\n";
+        
+    /* col */
+    let uColCommands = resources.styles.objToStyles({
+                            'box-sizing': 'border-box',
+                            'word-wrap': 'break-word',
+                            'margin-left': '({{var}}offset / 2)',
+                            'margin-right': '({{var}}offset / 2)'
+                       }, 1); 
+
+    let ucol = new resources.mixin(resources.patterns.mixin, 
+                                   resources.settings.mixinNames.uColumn, 
+                                   '{{var}}offset', 
+                                   emptyMedia.wrap(uColCommands));
+    str += ucol.render();
+    str += "\n\n";
+
+    /* size */
+    let uSizeCommands = resources.styles.objToStyles({
+        'width': '{{i}}calc(100% / {{string-var}}columns{{/string-var}} * {{string-var}}n{{/string-var}} - {{string-var}}offset{{/string-var}}){{/i}}'
+    }, 1); 
+
+    let usize = new resources.mixin(resources.patterns.mixin, 
+                                   resources.settings.mixinNames.uSize, 
+                                   '{{var}}n, {{var}}columns, {{var}}offset', 
+                                   emptyMedia.wrap(uSizeCommands));
+    str += usize.render();
+    str += "\n\n";
+
+    /* user rows end */
+
     let reset = new resources.mixin(resources.patterns.mixin, resources.settings.mixinNames.reset, '', resources.patterns.reset);
     str += reset.render();
     str += "\n\n";
