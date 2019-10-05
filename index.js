@@ -122,6 +122,12 @@ const smartGrid = function (dest, options) {
 }
 
 const userArguments = getArgumentsFromConsole();
-if (userArguments.includes('--cli')) cli();
+if (userArguments.includes('--cli')) {
+    
+    cli().then(options => {
+        smartGrid('.', options);
+    });
+    
+};
 
 module.exports = smartGrid;
