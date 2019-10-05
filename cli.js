@@ -47,6 +47,12 @@ module.exports = async function smartGridCli() {
 			name: 'columns',
 			message: 'Columns? (popular 12 and 24)',
 			default: baseConfig.columns
+		},
+		{
+			type: 'input',
+			name: 'offset',
+			message: 'Padding between columns? (px|rem|%)',
+			default: baseConfig.offset
 		}
 	]);
 
