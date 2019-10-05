@@ -125,7 +125,6 @@ const userArguments = getArgumentsFromConsole();
 if (userArguments.includes('--cli')) {
     
     cli().then(options => {
-        console.log(options.outputStyle);
         smartGrid('.', options);
     });
     

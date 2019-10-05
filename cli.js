@@ -1,7 +1,10 @@
 const inquirer = require('inquirer');
 const baseConfig = require('./system/defaults/settings');
+const { setTabFromChoises } = require('./system/cliUtils');
 
 module.exports = async function smartGridCli() {
+	let config = {};
+
   	const answers = await inquirer.prompt([
 		{
 			type: 'confirm',
@@ -25,11 +28,27 @@ module.exports = async function smartGridCli() {
 				"sass",
 				"styl"
 			]
+		},
+		{
+			type: 'list',
+			name: 'tab',
+			message: 'Tab style?',
+			default: '4 spaces',
+			choices: [
+				"1 spaces",
+				"2 spaces",
+				"3 spaces",
+				"4 spaces",
+				"1 tab"
+			]
 		}
 	]);
 
+	config = { ...answers }
+	config.tab = setTabFromChoises(answers.tab)
+
 	return {
 		...baseConfig,
-		...answers
+		...config
 	}
 };
