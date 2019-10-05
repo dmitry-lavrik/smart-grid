@@ -41,6 +41,12 @@ module.exports = async function smartGridCli() {
 				"4 spaces",
 				"1 tab"
 			]
+		},
+		{
+			type: 'input',
+			name: 'columns',
+			message: 'Columns? (popular 12 and 24)',
+			default: baseConfig.columns
 		}
 	]);
 
