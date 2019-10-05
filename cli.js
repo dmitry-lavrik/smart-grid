@@ -6,12 +6,25 @@ module.exports = async function smartGridCli() {
 		{
 			type: 'confirm',
 			name: 'mobileFirst',
+			default: baseConfig.mobileFirst,
 			message: 'Use mobileFirst by default? If not, it will be desktopFirst.',
 		},
 		{
 			type: 'input',
 			name: 'filename',
+			default: baseConfig.filename,
 			message: 'Output file name? (without extension)'
+		},
+		{
+			type: 'list',
+			name: 'outputStyle',
+			message: "CSS-preprocessor...",
+			choices: [
+				"less",
+				"scss",
+				"sass",
+				"styl"
+			]
 		}
 	]);
 
