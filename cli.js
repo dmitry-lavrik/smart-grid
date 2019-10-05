@@ -53,7 +53,13 @@ module.exports = async function smartGridCli() {
 			name: 'offset',
 			message: 'Padding between columns? (px|rem|%)',
 			default: baseConfig.offset
-		}
+		},
+		{
+			type: 'confirm',
+			name: 'detailedCalc',
+			default: baseConfig.detailedCalc,
+			message: 'Use detailedCalc for calc()?',
+		},
 	]);
 
 	config = { ...answers }
