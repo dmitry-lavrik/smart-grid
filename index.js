@@ -1,4 +1,7 @@
-module.exports = function (dest, options) {
+const cli = require('./cli');
+const { getArgumentsFromConsole } = require('./system/cliUtils');
+
+const smartGrid = function (dest, options) {
     try {
         let root = __dirname;
         let fs = require('fs');
@@ -117,3 +120,8 @@ module.exports = function (dest, options) {
         console.log("Oops -> " + err.stack);
     }
 }
+
+const userArguments = getArgumentsFromConsole();
+if (userArguments.includes('--cli')) cli();
+
+module.exports = smartGrid;
