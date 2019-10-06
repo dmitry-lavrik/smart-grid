@@ -1,8 +1,10 @@
+const baseConfig = require('./defaults/settings')
+
 function getArgumentsFromConsole() {
     return [...process.argv];
 }
   
-function setTabFromChoises(choise){
+function getTabFromChoises(choise){
     const tabs = {
         '1 spaces': ' ',
         '2 spaces': '  ',
@@ -13,5 +15,39 @@ function setTabFromChoises(choise){
     return tabs[choise];
 }
 
-module.exports = { getArgumentsFromConsole, setTabFromChoises };
+function setContainerParamsFromInput(input){
+    const params = input.split(' ')
+    if (params.length !== 2) return baseConfig.container;
+    return {
+        maxWidth: params[0].trim(),
+        fields: params[1].trim()
+    }
+}
+
+function getBreakpointsObjectFromString(breakpointsString){
+
+    const breakpoints = {}
+
+    const lines = breakpointsString.trim().split('\n');
+
+    lines.forEach(breakpoint => {
+        const [name, width, fields] = breakpoint.split(' ');
+
+        breakpoints[name] = {
+            width
+        }
+
+        if (fields) {
+            breakpoints[name] = { width, fields }
+        }
+    })
+    return breakpoints;
+}
+
+module.exports = { 
+    getArgumentsFromConsole, 
+    getTabFromChoises, 
+    setContainerParamsFromInput, 
+    getBreakpointsObjectFromString 
+};
   

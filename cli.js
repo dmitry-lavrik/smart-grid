@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const baseConfig = require('./system/defaults/settings');
-const { setTabFromChoises } = require('./system/cliUtils');
+const { getTabFromChoises, setContainerParamsFromInput, getBreakpointsObjectFromString } = require('./system/cliUtils');
 
 module.exports = async function smartGridCli() {
 	let config = {};
@@ -60,10 +60,47 @@ module.exports = async function smartGridCli() {
 			default: baseConfig.detailedCalc,
 			message: 'Use detailedCalc for calc()?',
 		},
+		{
+			type: 'list',
+			name: 'defaultMediaDevice',
+			message: 'What is default media device for media query?',
+			default: baseConfig.defaultMediaDevice,
+			choices: [
+				"screen",
+				"only screen",
+				"all",
+			]
+		},
+		{
+			type: 'input',
+			name: 'container',
+			default: '1280px 30px',
+			message: 'Please enter container params e.g. 1280px 30px'
+		},
+		{
+			type: 'confirm',
+			name: 'breakPoints',
+			message: 'Use default breakpoints?',
+			default: true
+		}
 	]);
 
 	config = { ...answers }
-	config.tab = setTabFromChoises(answers.tab)
+	config.tab = getTabFromChoises(answers.tab)
+	config.container = setContainerParamsFromInput(answers.container)
+
+	if (answers.breakPoints) {
+		config.breakPoints = baseConfig.breakPoints;
+	} else {
+		const breakpoints = await inquirer.prompt([
+			{
+				type: 'editor',
+				name: 'raw',
+				message: 'Enter breakpoints'
+			}
+		])
+		config.breakPoints = getBreakpointsObjectFromString(breakpoints.raw);
+	}
 
 	return {
 		...baseConfig,
