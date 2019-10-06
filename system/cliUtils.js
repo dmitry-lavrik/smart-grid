@@ -44,10 +44,16 @@ function getBreakpointsObjectFromString(breakpointsString){
     return breakpoints;
 }
 
+function validateByLengthWithMessage(validateValue, message){
+    if (validateValue.length === 0) return message;
+	return true;
+}
+
 module.exports = { 
     getArgumentsFromConsole, 
     getTabFromChoises, 
     setContainerParamsFromInput, 
-    getBreakpointsObjectFromString 
+    getBreakpointsObjectFromString,
+    validateByLengthWithMessage 
 };
   

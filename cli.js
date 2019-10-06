@@ -1,6 +1,16 @@
 const inquirer = require('inquirer');
 const baseConfig = require('./system/defaults/settings');
-const { getTabFromChoises, setContainerParamsFromInput, getBreakpointsObjectFromString } = require('./system/cliUtils');
+const { 
+	getTabFromChoises, 
+	setContainerParamsFromInput, 
+	getBreakpointsObjectFromString, 
+	validateByLengthWithMessage } = require('./system/cliUtils');
+
+const { 
+	FILENAME_VALIDATE_MESSAGE, 
+	COLUMNS_VALIDATE_MESSAGE,
+	OFFSET_VALIDATE_MESSAGE,
+	CONTAINER_VAVLIDATE_MESSAGE } = require('./system/defaults/cliMessages');
 
 module.exports = async function smartGridCli() {
 	let config = {};
@@ -16,7 +26,8 @@ module.exports = async function smartGridCli() {
 			type: 'input',
 			name: 'filename',
 			default: baseConfig.filename,
-			message: 'Output file name? (without extension)'
+			message: 'Output file name? (without extension)',
+			validate: filename => validateByLengthWithMessage(filename, FILENAME_VALIDATE_MESSAGE)
 		},
 		{
 			type: 'list',
@@ -46,13 +57,15 @@ module.exports = async function smartGridCli() {
 			type: 'input',
 			name: 'columns',
 			message: 'Columns? (popular 12 and 24)',
-			default: baseConfig.columns
+			default: baseConfig.columns,
+			validate: columns => validateByLengthWithMessage(columns, COLUMNS_VALIDATE_MESSAGE) 
 		},
 		{
 			type: 'input',
 			name: 'offset',
 			message: 'Padding between columns? (px|rem|%)',
-			default: baseConfig.offset
+			default: baseConfig.offset,
+			validate: offset => validateByLengthWithMessage(offset, OFFSET_VALIDATE_MESSAGE)
 		},
 		{
 			type: 'confirm',
@@ -75,7 +88,8 @@ module.exports = async function smartGridCli() {
 			type: 'input',
 			name: 'container',
 			default: '1280px 30px',
-			message: 'Please enter container params e.g. 1280px 30px'
+			message: 'Please enter container params e.g. 1280px 30px',
+			validate: containerParams => validateByLengthWithMessage(containerParams, CONTAINER_VAVLIDATE_MESSAGE)
 		},
 		{
 			type: 'confirm',
