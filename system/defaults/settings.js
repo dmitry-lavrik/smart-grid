@@ -1,5 +1,5 @@
 module.exports = {
-    filename: "smart-grid",
+    filename: "_smart-grid",
     outputStyle: "less",
     columns: 12,
     offset: "30px",
