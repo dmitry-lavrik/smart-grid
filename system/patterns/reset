@@ -29,7 +29,7 @@
 {{tab}}sub{{brace}}
 {{tab}}{{tab}}vertical-align{{:}}text-bottom{{;}}
 {{tab}}{{/brace}}
-{{tab}}input,textarea,select{{brace}}
+{{tab}}input,textarea,select,button{{brace}}
 {{tab}}{{tab}}font-family{{:}}inherit{{;}}
 {{tab}}{{tab}}font-size{{:}}inherit{{;}}
 {{tab}}{{tab}}font-weight{{:}}inherit{{;}}
