@@ -14,10 +14,10 @@ function Build(settings, patterns) {
     let base = require('./system/base.js');
     let globalMediaCondition = settings.mobileFirst ? 'min-width' : 'max-width';
   
-    let str = '';
+    let str = '@use "sass:math";\n';
    
     str += "{{var}}columns{{=}}" + resources.settings.columns + '{{;}}\n';
-    str += "{{var}}atom{{=}}(100% / {{var}}columns){{;}}\n";
+    str += "{{var}}atom{{=}}math.div(100% , {{var}}columns){{;}}\n";
     
     str += '\n';
     
@@ -45,10 +45,10 @@ function Build(settings, patterns) {
 
     str += '\n';
 
-    str += "{{var}}offset_one_side{{=}}({{var}}offset / 2){{;}}\n";
+    str += "{{var}}offset_one_side{{=}}math.div({{var}}offset , 2){{;}}\n";
     
     for (let name in resources.settings.breakPoints) {
-        str += `{{var}}offset_${name}_one_side{{=}}({{var}}offset_${name} / 2){{;}}\n`;
+        str += `{{var}}offset_${name}_one_side{{=}}math.div({{var}}offset_${name} , 2){{;}}\n`;
     }
 
     str += '\n';
@@ -118,8 +118,8 @@ function Build(settings, patterns) {
     let uRowCommands = resources.styles.objToStyles({
                             display: 'flex',
                             'flex-wrap': 'wrap',
-                            'margin-left': '({{var}}offset / -2)',
-                            'margin-right': '({{var}}offset / -2)'
+                            'margin-left': 'math.div({{var}}offset , -2)',
+                            'margin-right': 'math.div({{var}}offset , -2)'
                        }, 1); 
 
     let urow = new resources.mixin(resources.patterns.mixin, 
@@ -133,8 +133,8 @@ function Build(settings, patterns) {
     let uColCommands = resources.styles.objToStyles({
                             'box-sizing': 'border-box',
                             'word-wrap': 'break-word',
-                            'margin-left': '({{var}}offset / 2)',
-                            'margin-right': '({{var}}offset / 2)'
+                            'margin-left': 'math.div({{var}}offset , 2)',
+                            'margin-right': 'math.div({{var}}offset , 2)'
                        }, 1); 
 
     let ucol = new resources.mixin(resources.patterns.mixin, 
