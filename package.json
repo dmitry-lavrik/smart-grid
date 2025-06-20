@@ -1,6 +1,6 @@
 {
   "name": "smart-grid",
-  "version": "2.2.3",
+  "version": "2.3.1",
   "description": "Smart CSS Grid with different preprocessors: LESS, SCSS, SASS or Stylus",
   "main": "index.js",
   "type": "module",
