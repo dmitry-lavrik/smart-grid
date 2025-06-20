@@ -199,4 +199,4 @@ Mostly nice! But too many media queries.
 
 ### Vite demo for all preprocessors 
 
-[https://github.com/dmitry-lavrik/smartgrid-test](url)
+[https://github.com/dmitry-lavrik/smartgrid-test](https://github.com/dmitry-lavrik/smartgrid-test)
