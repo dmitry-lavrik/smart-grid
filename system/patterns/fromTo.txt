@@ -1,0 +1,3 @@
+{{tab}}@media {{device}} and (min-width: {{var}}min_width) and (max-width: {{var}}max_width){{brace}}
+{{tab}}{{tab}}{{block-content-extract}}{{;}}
+{{tab}}{{/brace}}

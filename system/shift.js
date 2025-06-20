@@ -65,7 +65,7 @@ export default class Shift{
                 }
             }
             else{
-                styles += `{{var}}val{{=}}100% / {{var}}columns * {{var}}n{{;}}\n`;
+                styles += `{{var}}val{{=}}{{div_before}}100% {{div_oper}} {{var}}columns{{div_after}} * {{var}}n{{;}}\n`;
                 
                 for(let j = 0; j < this.map[i].props.length; j++){
                     if(j > 0){

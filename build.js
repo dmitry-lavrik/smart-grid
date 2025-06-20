@@ -23,9 +23,13 @@ export default function Build(settings, patterns) {
     let globalMediaCondition = settings.mobileFirst ? 'min-width' : 'max-width';
   
     let str = '';
+
+    if(resources.settings.outputStyle == 'scss' || resources.settings.outputStyle == 'sass'){
+        str += "@use 'sass:math';\n\n";
+    }
    
     str += "{{var}}columns{{=}}" + resources.settings.columns + '{{;}}\n';
-    str += "{{var}}atom{{=}}(100% / {{var}}columns){{;}}\n";
+    str += "{{var}}atom{{=}}{{div_before}}100% {{div_oper}} {{var}}columns{{div_after}}{{;}}\n";
     
     str += '\n';
     
@@ -53,10 +57,10 @@ export default function Build(settings, patterns) {
 
     str += '\n';
 
-    str += "{{var}}offset_one_side{{=}}({{var}}offset / 2){{;}}\n";
+    str += "{{var}}offset_one_side{{=}}{{div_before}}{{var}}offset {{div_oper}} 2{{div_after}}{{;}}\n";
     
     for (let name in resources.settings.breakPoints) {
-        str += `{{var}}offset_${name}_one_side{{=}}({{var}}offset_${name} / 2){{;}}\n`;
+        str += `{{var}}offset_${name}_one_side{{=}}{{div_before}}{{var}}offset_${name} {{div_oper}} 2{{div_after}}{{;}}\n`;
     }
 
     str += '\n';

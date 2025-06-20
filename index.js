@@ -78,12 +78,12 @@ export default function smartgrid(dest, options) {
         }
         
         let patterns = {};
-        patterns.mixin = fs.readFileSync(root + '/system/patterns/mixin');
-        patterns.clearfix = fs.readFileSync(root + '/system/patterns/clearfix');
-        patterns.reset = fs.readFileSync(root + '/system/patterns/reset');
-        patterns.fromTo = fs.readFileSync(root + '/system/patterns/fromTo');
+        patterns.mixin = fs.readFileSync(root + '/system/patterns/mixin.txt');
+        patterns.clearfix = fs.readFileSync(root + '/system/patterns/clearfix.txt');
+        patterns.reset = fs.readFileSync(root + '/system/patterns/reset.txt');
+        patterns.fromTo = fs.readFileSync(root + '/system/patterns/fromTo.txt');
 
-        let patternDebug = fs.readFileSync(root + '/system/patterns/debug');
+        let patternDebug = fs.readFileSync(root + '/system/patterns/debug.txt');
         let sizeCalling = ['(1)'];
         
         for(let name in options.breakPoints){

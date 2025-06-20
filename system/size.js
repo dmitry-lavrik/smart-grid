@@ -23,7 +23,7 @@ export default class Size{
             });
         }
         else{
-            style += `{{var}}val{{=}}100% / {{var}}columns * {{var}}n{{;}}\n`;
+            style += `{{var}}val{{=}}{{div_before}}100% {{div_oper}} {{var}}columns{{div_after}} * {{var}}n{{;}}\n`;
             
             style += this.resources.styles.objToCallMedia(this.postfix, {
                 width: `{{i}}calc({{string-var}}val{{/string-var}} - {{string-var}}offset${mediaPostfix}{{/string-var}}){{/i}}`

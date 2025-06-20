@@ -23,7 +23,10 @@ export default class Replaces {
                 '{{block-content-var}}': '@content',
                 '{{block-content-extract}}': '@content()',
                 '{{block_callable_brace}}': '({\n',
-                '{{/block_callable_brace}}': '});'
+                '{{/block_callable_brace}}': '});',
+                '{{div_before}}': '(',
+                '{{div_oper}}': '/',
+                '{{div_after}}': ')',
             },
             scss: {
                 '{{var}}': '$',
@@ -43,7 +46,10 @@ export default class Replaces {
                 '{{block-content-var}}': '',
                 '{{block-content-extract}}': '@content',
                 '{{block_callable_brace}}': '(){\n',
-                '{{/block_callable_brace}}': '}'
+                '{{/block_callable_brace}}': '}',
+                '{{div_before}}': 'math.div(',
+                '{{div_oper}}': ',',
+                '{{div_after}}': ')',
             },
             styl: {
                 '{{var}}': '$',
@@ -63,7 +69,10 @@ export default class Replaces {
                 '{{block-content-var}}': '',
                 '{{block-content-extract}}': '{block}',
                 '{{block_callable_brace}}': '()\n',
-                '{{/block_callable_brace}}': ''
+                '{{/block_callable_brace}}': '',
+                '{{div_before}}': '(',
+                '{{div_oper}}': '/',
+                '{{div_after}}': ')',
             },
             sass: {
                 '{{var}}': '$',
@@ -83,7 +92,10 @@ export default class Replaces {
                 '{{block-content-var}}': '',
                 '{{block-content-extract}}': '@content',
                 '{{block_callable_brace}}': '()\n',
-                '{{/block_callable_brace}}': ''
+                '{{/block_callable_brace}}': '',
+                '{{div_before}}': 'math.div(',
+                '{{div_oper}}': ',',
+                '{{div_after}}': ')',
             }
         };
 
