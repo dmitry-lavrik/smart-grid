@@ -1,4 +1,4 @@
-class Helpers{
+export default class Helpers{
     static smartCalc(w, o, operation){
         var output = "";
         var width = this.parseUnit(w);
@@ -70,5 +70,3 @@ class Helpers{
         return res;
     }
 }
-
-module.exports = Helpers;

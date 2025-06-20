@@ -1,3 +1,2 @@
-var root = __dirname;
-var smartgrid = require(root + '/index.js');
+import smartgrid from './index.js'
 smartgrid();

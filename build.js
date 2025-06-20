@@ -1,17 +1,25 @@
-function Build(settings, patterns) {
-    let resources = {};
-    
-    resources.settings = settings;
-    resources.patterns = patterns;
-    resources.mixin = require('./system/mixin.js');
-    resources.media = require('./system/media.js');
-    resources.helpers = require('./system/helpers.js');
-    resources.size = require('./system/size.js');
-    resources.shift = require('./system/shift.js');
-    resources.styles = require('./system/styles.js');
-    resources.replaces = require('./system/replaces.js');
+import mixin from './system/mixin.js'
+import media from './system/media.js'
+import helpers from './system/helpers.js'
+import SizeClass from './system/size.js'
+import ShiftClass from './system/shift.js'
+import styles from './system/styles.js'
+import ReplacesClass from './system/replaces.js'
+import base from './system/base.js'
+
+export default function Build(settings, patterns) {
+    let resources = {
+        settings,
+        patterns,
+        mixin,
+        media,
+        helpers,
+        size: SizeClass,
+        shift: ShiftClass,
+        styles,
+        replaces: ReplacesClass
+    };
    
-    let base = require('./system/base.js');
     let globalMediaCondition = settings.mobileFirst ? 'min-width' : 'max-width';
   
     let str = '';
@@ -179,5 +187,3 @@ function Build(settings, patterns) {
         type: resources.settings.outputStyle
     };
 }
-
-module.exports = Build;

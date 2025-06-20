@@ -1,4 +1,4 @@
-class Shift{
+export default class Shift{
     
     constructor(resources, name, postfix = '') {
         this.resources = resources;
@@ -86,5 +86,3 @@ class Shift{
         return mixins;
     }
 }
-
-module.exports = Shift;

@@ -1,4 +1,4 @@
-class Styles{
+export default class Styles{
     
     static objToStyles(obj, left = 0) {
         let styles = '';
@@ -65,5 +65,3 @@ class Styles{
         return str;
     }
 }
-
-module.exports = Styles;

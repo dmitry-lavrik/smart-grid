@@ -1,4 +1,4 @@
-class Mixin{
+export default class Mixin{
     constructor(pattern, name, params, content){
         this.pattern = pattern.toString();
 
@@ -19,5 +19,3 @@ class Mixin{
         return out;
     }
 }
-
-module.exports = Mixin;

@@ -1,4 +1,4 @@
-class Size{
+export default class Size{
     
     constructor(resources, name, postfix = '') {
         this.resources = resources;
@@ -34,5 +34,3 @@ class Size{
         return mixin.render(this.resources.settings.outputStyle);
     }
 }
-
-module.exports = Size;

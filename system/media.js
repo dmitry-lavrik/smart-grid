@@ -1,4 +1,4 @@
-class Media{
+export default class Media{
     
     constructor(breakPoint = null, condition = 'max-width', device = 'screen') {
         this.breakPoint = breakPoint;
@@ -47,5 +47,3 @@ class Media{
         return str;
     }
 }
-
-module.exports = Media;

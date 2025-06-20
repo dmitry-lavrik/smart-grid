@@ -1,4 +1,4 @@
-class Base{
+export default class Base{
     constructor(resources){
         this.resources = resources;
         let cfull = `{{call}}${this.resources.settings.mixinNames.container}-full()`;
@@ -122,5 +122,3 @@ class Base{
         return out;
     }
 }
-
-module.exports = Base;

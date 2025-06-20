@@ -1,4 +1,4 @@
-class Replaces {
+export default class Replaces {
     constructor(resources) {
         this.resources = resources;
     }
@@ -141,5 +141,3 @@ class Replaces {
         return str;
     }
 }
-
-module.exports = Replaces;

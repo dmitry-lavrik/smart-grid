@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     filename: "smart-grid",
     outputStyle: "less",
     columns: 12,

@@ -1,8 +1,10 @@
-module.exports = function (dest, options) {
+import defaults from './system/defaults/settings.js';
+import fs from 'fs'
+import build from './build.js'
+
+export default function smartgrid(dest, options) {
     try {
-        let root = __dirname;
-        let fs = require('fs');
-        let defaults = require('./system/defaults/settings.js');
+        let root = import.meta.dirname;
 
         let innerMerge = {
             container: true,
@@ -100,7 +102,6 @@ module.exports = function (dest, options) {
                                      .replace('{{mixinNames.row-flex}}', options.mixinNames.row, 'g')
                                      .replace('{{mixinNames.col}}', options.mixinNames.column, 'g');
 
-        let build = require('./build.js');
         let res = build(options, patterns);
 
         if (dest === undefined) {
