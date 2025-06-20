@@ -196,3 +196,7 @@ Mostly nice! But too many media queries.
     - group-css-media-queries
     - autoprefixer
     - clean-css
+
+### Vite demo for all preprocessors 
+
+[https://github.com/dmitry-lavrik/smartgrid-test](url)
