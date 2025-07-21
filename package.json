@@ -1,13 +1,14 @@
 {
   "name": "smart-grid",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "Smart CSS Grid with different preprocessors: LESS, SCSS, SASS or Stylus",
   "main": "index.js",
   "type": "module",
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "test-commonjs": "node test.cjs"
   },
   "keywords": [
     "css",

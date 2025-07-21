@@ -9,7 +9,15 @@ $ npm i smart-grid --save-dev
 * Create a file with the following config. Tweak it where needed.
 
 ```js
-var smartgrid = require('smart-grid');
+// ES-modules
+import smartgrid from 'smart-grid';
+
+/*
+    // For CommonJs
+    import('smart-grid').then(({ default: smartgrid }) => {
+        
+    }); 
+*/
 
 /* It's principal settings in smart grid project */
 var settings = {
